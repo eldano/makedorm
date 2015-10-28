@@ -1,45 +1,49 @@
 $(function() {
-  var teamSection = $("#teams");
+  var $participants = $("#participants");
+  var $roommies = $("#roommies");
 
-  var allParticipants = [];
-  var teamNumber = 0;
+  var $manuallySelected = $([]);
+  var selectedTeam = "";
 
-  $("#team-maker").click(function() {
-    teamNumber = parseInt($("#teams-number").val(), 10);
-    allParticipants = _.compact($("#names").val().split("\n"));
+  $participants.find("div").click(function(e) {
+    var $target = $(e.target);
+    selectedTeam = $target.attr("class");
 
-    createEmptyTeams();
-    distributeParticipants();
-  });
+    $manuallySelected.removeClass("selected");
+    $manuallySelected = $target;
+    $target.addClass("selected")
+  })
 
-  function createEmptyTeams() {
-    teamSection.html("");
+  $("#button").click(function() {
+    drawFromAnotherTeam(selectedTeam)
+  })
 
-    for(var i = 0; i < teamNumber; i ++) {
-      var teamId = "team_" + i;
-      var teamName = teamId;
+  function drawFromAnotherTeam(team) {
+    $divs = $participants.find("div");
+    var remainingParticipants = $divs.length;
 
-      createEmptyTeam(teamId, teamName).appendTo(teamSection);
+    var drawComplete = false;
+
+    while(!drawComplete) {
+      var index = Math.floor(Math.random() * remainingParticipants)
+      var $winner = $($divs[index]);
+
+      if(!$winner.hasClass(selectedTeam)) {
+        drawComplete = true;
+      }
     }
-  }
 
-  function createEmptyTeam(teamId, teamName) {
-    var teamContainer = $("<li/>", { "id": teamId });
-    $("<span/>", { "text": teamName }).appendTo(teamContainer);
-    $("<ul/>").appendTo(teamContainer);
+    var p1 = $manuallySelected.text();
+    var p2 = $winner.text();
 
-    return teamContainer;
-  }
+    alert("It's a match! " + p1 + " <3 " + p2);
 
-  function distributeParticipants() {
-    var max = allParticipants.length;
-    for(var i = 0; i < max; i++) {
-      var index = Math.floor(Math.random() * allParticipants.length)
-      var participant = $("<li/>", { "text": allParticipants[index] });
-      allParticipants.splice(index, 1);
+    var $span = $("<div/>", { "text": p1 + " - " + p2});
 
-      var teamId = "team_" + (i % teamNumber);
-      $("li#" + teamId + " ul").append(participant);
-    }
+    $roommies.append($span);
+
+    $winner.remove();
+    $manuallySelected.remove();
+    selectedTeam = "";
   }
 });

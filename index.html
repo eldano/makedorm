@@ -4,37 +4,90 @@
 <head>
   <meta charset="utf-8">
 
-  <title>Make team</title>
+  <title>Make dorm</title>
 
   <link rel="stylesheet" href="css/styles.css?v=1.0">
 
   <link href="//cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/css/foundation.min.css" rel="stylesheet">
+
+  <style type="text/css">
+    .pelados {
+      background-color: orange;
+    }
+    .schorus {
+      background-color: pink;
+    }
+    .crazy {
+      background-color: lightgreen;
+    }
+    .thera {
+      background-color: cyan;
+    }
+    .realreal {
+      background-color: yellow;
+    }
+    .whistle {
+      background-color: red;
+    }
+    .onboarding {
+      background-color: lightblue;
+    }
+
+    .selected {
+      border: 2px solid black;
+    }
+
+    #participants, #roommies {
+      font-size: 24px;
+    }
+  </style>
 </head>
 
 <body>
   <div class="container">
+
     <nav class="top-bar" data-topbar role="navigation">
       <ul class="title-area">
         <li class="name">
-          <h1><a href="#">Make Team!</a></h1>
+          <h1><a href="#">Make Dorm!</a></h1>
         </li>
       </ul>
     </nav>
 
     <div class="row">
       <section id="participants" class="large-3 columns">
-        <textarea id="names" cols="30" rows="20"></textarea>
+        <div id="pasto"    class="pelados">Pasto</div>
+        <div id="costa"    class="pelados">Costa</div>
+        <div id="sebamar"  class="pelados">Sebamar</div>
+        <div id="sebagon"  class="pelados">Sebagon</div>
+        <div id="cholee"   class="pelados">Cholee</div>
+        <div id="carri"    class="pelados">Carri</div>
+
+        <div id="gonchi"   class="schorus">Gonchi</div>
+        <div id="barte"    class="schorus">Barte</div>
+        <div id="marce"    class="schorus">Marce</div>
+
+        <div id="juan"     class="crazy">Juan</div>
+        <div id="diegol"   class="crazy">Diegol</div>
+
+        <div id="bellucci" class="thera">Bellucci</div>
+        <div id="dano"     class="thera">Dano</div>
+
+        <div id="pelado"   class="realreal">Pelado</div>
+
+        <div id="alexis"   class="whistle">Alexis</div>
+
+        <div id="rodrigo"  class="onboarding">Rodrigo</div>
       </section>
 
       <div class="large-2 columns">
-        Teams number:<input id="teams-number">
-        <button id="team-maker">GO!</button>
+        <button id="button">GO!</button>
       </div>
 
-      <section class="large-7 columns">
-        <ul id="teams" class="small-block-grid-2"></ul>
+      <section id="roommies" class="large-7 columns">
       </section>
     </div>
+
   </div>
 
   <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
